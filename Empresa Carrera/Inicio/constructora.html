@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cristian Carrera - Trabajos de Construcción</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* RESET Y BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Montserrat', 'Arial', sans-serif;
+      color: #fff;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://img.pikbest.com/wp/202343/sleek-and-polished-wall-texture-background_9988814.jpg!w700wp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-color: #0f0f0f;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR (manteniendo el estilo original) */
+    .navbar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 900;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      color: #ffffff;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:after,
+    .nav-link.active:after {
+      width: 100%;
+    }
+
+    .espacio-superior {
+      height: 6rem;
+    }
+
+    /* SECCIÓN PRINCIPAL */
+    .construccion-section {
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .section-header h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .section-header p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .decoration-line {
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, #ffffff, transparent);
+      margin: 1rem auto 2rem;
+    }
+
+    /* GRID DE TRABAJOS */
+    .trabajos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    /* CARDS DE TRABAJOS MEJORADAS */
+    .trabajo-card {
+      background: rgba(15, 15, 15, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 5px 15px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeInUp 1s ease;
+      position: relative;
+    }
+
+    .trabajo-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.1));
+      border-radius: 25px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .trabajo-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .trabajo-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    }
+
+    .card-header h3 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .card-header h3 i {
+      font-size: 1.3rem;
+      color: #ffffff;
+      opacity: 0.9;
+    }
+
+    .card-header p {
+      color: #c0c0c0;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* COMPARADOR ANTES/DESPUÉS MEJORADO */
+    .before-after-container {
+      position: relative;
+      height: 350px;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .before-after-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .before-after-slider:active {
+      cursor: grabbing;
+    }
+
+    .image-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .image-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.95) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+
+    .trabajo-card:hover .image-layer img {
+      filter: brightness(1) contrast(1.15);
+    }
+
+    .after-image {
+      clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+      transition: clip-path 0.3s ease;
+    }
+
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+      cursor: grab;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .slider-handle:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .slider-handle:active {
+      cursor: grabbing;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .slider-handle i {
+      color: #333;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .slider-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(255, 255, 255, 0.9) 50%, 
+        rgba(255, 255, 255, 0.8) 100%);
+      transform: translateX(-50%);
+      z-index: 5;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .image-labels {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 15;
+    }
+
+    .label {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    /* CARD DE VIDEO MEJORADA */
+    .video-card {
+      background: rgba(15, 15, 15, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 5px 15px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeInUp 1s ease 0.2s both;
+      position: relative;
+    }
+
+    .video-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.1));
+      border-radius: 25px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .video-card:hover::before {
+      opacity: 1;
+    }
+
+    .video-container {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.9) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+
+    .video-card:hover .video-container video {
+      filter: brightness(1) contrast(1.15);
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, 
+        rgba(0,0,0,0.9) 0%, 
+        rgba(0,0,0,0.3) 40%, 
+        transparent 70%);
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+    }
+
+    .video-info h3 {
+      color: #ffffff;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+
+    .video-info p {
+      color: #d0d0d0;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* ANIMACIONES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE MEJORADO */
+    @media (max-width: 768px) {
+      .construccion-section {
+        padding: 2rem 1rem;
+      }
+
+      .section-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .trabajos-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .before-after-container {
+        height: 280px;
+      }
+
+      .video-container {
+        height: 300px;
+      }
+
+      .card-header {
+        padding: 1.5rem;
+      }
+
+      .slider-handle {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .before-after-container {
+        height: 250px;
+      }
+
+      .video-container {
+        height: 250px;
+      }
+
+      .card-header {
+        padding: 1.2rem;
+      }
+
+      .card-header h3 {
+        font-size: 1.3rem;
+      }
+
+      .slider-handle {
+        width: 45px;
+        height: 45px;
+      }
+
+      .video-overlay {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <i class="fas fa-tools logo-icon"></i>
+      <span>"Dolphin" Services</span>
+    </div>
+    <nav>
+      <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
+      <a href="gasfiteria.html" class="nav-link"><i class="fas fa-wrench"></i> Gasfitería</a>
+      <a href="constructora.html" class="nav-link active"><i class="fas fa-hard-hat"></i> Constructora</a>
+    </nav>
+  </div>
+
+  <!-- Espacio superior -->
+  <header class="espacio-superior"></header>
+
+  <!-- Sección principal -->
+  <section class="construccion-section">
+    <div class="section-header">
+      <h1><i class="fas fa-hard-hat"></i> Trabajos de Construcción</h1>
+      <div class="decoration-line"></div>
+      <p>Conoce algunos de nuestros proyectos más destacados. Cada trabajo refleja nuestro compromiso con la calidad y la excelencia en construcción.</p>
+    </div>
+
+    <!-- Grid de trabajos -->
+    <div class="trabajos-grid">
+      <!-- Trabajo 1: Remodelación de Baño -->
+      <div class="trabajo-card">
+        <div class="card-header">
+          <h3><i class="fas fa-bath"></i> Remodelación de Baño</h3>
+          <p>Transformación completa con acabados modernos y diseño funcional</p>
+        </div>
+        <div class="before-after-container">
+          <div class="before-after-slider" data-slider="1">
+            <div class="image-layer">
+              <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=600&fit=crop&crop=center" alt="Baño antes" class="before-image">
+            </div>
+            <div class="image-layer after-image">
+              <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop&crop=center" alt="Baño después">
+            </div>
+            <div class="slider-line"></div>
+            <div class="slider-handle">
+              <i class="fas fa-arrows-alt-h"></i>
+            </div>
+            <div class="image-labels">
+              <span class="label">ANTES</span>
+              <span class="label">DESPUÉS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trabajo 2: Remodelación de Cocina -->
+      <div class="trabajo-card">
+        <div class="card-header">
+          <h3><i class="fas fa-utensils"></i> Remodelación de Cocina</h3>
+          <p>Diseño funcional con espacios optimizados y tecnología moderna</p>
+        </div>
+        <div class="before-after-container">
+          <div class="before-after-slider" data-slider="2">
+            <div class="image-layer">
+              <img src="img/cocina_antes.jpg" alt="Cocina antes" class="before-image">
+            </div>
+            <div class="image-layer after-image">
+              <img src="img/cocina_despues.jpg" alt="Cocina después">
+            </div>
+            <div class="slider-line"></div>
+            <div class="slider-handle">
+              <i class="fas fa-arrows-alt-h"></i>
+            </div>
+            <div class="image-labels">
+              <span class="label">ANTES</span>
+              <span class="label">DESPUÉS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trabajo 3: Ampliación de Casa -->
+      <div class="trabajo-card">
+        <div class="card-header">
+          <h3><i class="fas fa-home"></i> Ampliación de Casa</h3>
+          <p>Construcción de segundo piso y terraza con vista panorámica</p>
+        </div>
+        <div class="before-after-container">
+          <div class="before-after-slider" data-slider="3">
+            <div class="image-layer">
+              <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center" alt="Casa antes" class="before-image">
+            </div>
+            <div class="image-layer after-image">
+              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center" alt="Casa después">
+            </div>
+            <div class="slider-line"></div>
+            <div class="slider-handle">
+              <i class="fas fa-arrows-alt-h"></i>
+            </div>
+            <div class="image-labels">
+              <span class="label">ANTES</span>
+              <span class="label">DESPUÉS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trabajo 4: Remodelación de Dormitorio -->
+      <div class="trabajo-card">
+        <div class="card-header">
+          <h3><i class="fas fa-bed"></i> Remodelación de Dormitorio</h3>
+          <p>Ambiente acogedor con walking closet integrado y iluminación LED</p>
+        </div>
+        <div class="before-after-container">
+          <div class="before-after-slider" data-slider="4">
+            <div class="image-layer">
+              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center" alt="Dormitorio antes" class="before-image">
+            </div>
+            <div class="image-layer after-image">
+              <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&h=600&fit=crop&crop=center" alt="Dormitorio después">
+            </div>
+            <div class="slider-line"></div>
+            <div class="slider-handle">
+              <i class="fas fa-arrows-alt-h"></i>
+            </div>
+            <div class="image-labels">
+              <span class="label">ANTES</span>
+              <span class="label">DESPUÉS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card de Video -->
+    <div class="video-card">
+      <div class="card-header">
+        <h3><i class="fas fa-play-circle"></i> Proceso de Construcción</h3>
+        <p>Mira cómo trabajamos paso a paso en nuestros proyectos con total profesionalismo</p>
+      </div>
+      <div class="video-container">
+        <video autoplay muted loop>
+          <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+        <div class="video-overlay">
+          <div class="video-info">
+            <h3>Profesionalismo en Cada Detalle</h3>
+            <p>Desde la planificación inicial hasta la entrega final, cuidamos cada aspecto de tu proyecto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Funcionalidad para los sliders antes/después
+    document.addEventListener('DOMContentLoaded', function() {
+      const sliders = document.querySelectorAll('.before-after-slider');
+      
+      sliders.forEach(slider => {
+        const handle = slider.querySelector('.slider-handle');
+        const afterImage = slider.querySelector('.after-image');
+        const sliderLine = slider.querySelector('.slider-line');
+        let isDragging = false;
+        
+        function updateSlider(x) {
+          const rect = slider.getBoundingClientRect();
+          const percentage = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+          
+          afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+          handle.style.left = `${percentage}%`;
+          sliderLine.style.left = `${percentage}%`;
+        }
+        
+        // Mouse events
+        handle.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+          if (isDragging) {
+            updateSlider(e.clientX);
+          }
+        });
+        
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+        });
+        
+        // Touch events
+        handle.addEventListener('touchstart', (e) => {
+          isDragging = true;
+          e.preventDefault();
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+          if (isDragging) {
+            const touch = e.touches[0];
+            updateSlider(touch.clientX);
+          }
+        });
+        
+        document.addEventListener('touchend', () => {
+          isDragging = false;
+        });
+        
+        // Click en cualquier parte del slider
+        slider.addEventListener('click', (e) => {
+          if (!isDragging) {
+            updateSlider(e.clientX);
+          }
+        });
+      });
+    });
+
+    // Animación de entrada al hacer scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    // Observar las cards
+    document.querySelectorAll('.trabajo-card, .video-card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
